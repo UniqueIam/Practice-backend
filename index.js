@@ -1,6 +1,10 @@
 const express = require('express');
 const PDFDocument = require('pdfkit');
 const fs = require('fs');
+const uploadFileRoute = require('./route/uploadFileRoute');
+const dotenv = require('dotenv');
+
+dotenv.config();
 
 const app = express();
 const PORT = 5000;
@@ -9,6 +13,7 @@ app.get("/",async(req,res)=>{
     res.send("Hii from backend");
 })
 
+app.use("/api",uploadFileRoute);
 app.get('/generator-pdf',(req,res)=>{
     const responseData = {
         name: 'Abhimanyu Kumar',
